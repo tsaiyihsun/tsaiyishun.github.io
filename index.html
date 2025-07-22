@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Graduate Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .contact {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact a:hover {
+            opacity: 1;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #764ba2;
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-item:hover, .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-subtitle {
+            color: #667eea;
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 4px solid #764ba2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-title {
+            color: #764ba2;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Your Full Name</h1>
+                <p class="title">Aspiring Graduate Student</p>
+                <div class="contact">
+                    <p>Email: your.email@university.edu | Phone: (123) 456-7890</p>
+                    <p>LinkedIn: <a href="#">linkedin.com/in/yourprofile</a> | Portfolio: <a href="#">yourwebsite.com</a></p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Research Statement</h2>
+                <p>Brief statement about your research interests, academic goals, and what drives your passion for your chosen field. This should be compelling and demonstrate your readiness for graduate-level study. Explain how graduate school fits into your long-term academic and career objectives.</p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="education-item">
+                    <h3 class="item-title">Bachelor of Science in [Your Major]</h3>
+                    <p class="item-subtitle">University Name</p>
+                    <p class="item-date">Expected Graduation: Month Year</p>
+                    <p class="item-description">GPA: X.XX/4.0 | Relevant Coursework: Course 1, Course 2, Course 3 | Dean's List: Semesters</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3 class="item-title">Additional Certifications or Relevant Education</h3>
+                    <p class="item-subtitle">Institution Name</p>
+                    <p class="item-date">Completion Date</p>
+                    <p class="item-description">Description of additional training, certifications, or educational experiences relevant to your field.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Research Experience</h2>
+                <div class="experience-item">
+                    <h3 class="item-title">Research Assistant</h3>
+                    <p class="item-subtitle">Professor Name's Lab, University Name</p>
+                    <p class="item-date">Month Year - Present</p>
+                    <p class="item-description">Detailed description of your research responsibilities, methodologies used, and key findings or contributions. Highlight any publications, presentations, or significant outcomes.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3 class="item-title">Independent Study Project</h3>
+                    <p class="item-subtitle">Project Title</p>
+                    <p class="item-date">Month Year - Month Year</p>
+                    <p class="item-description">Description of independent research project, including objectives, methodology, and results. Emphasize skills developed and knowledge gained.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Programming</h4>
+                        <p>Python, R, MATLAB, Java, C++</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Analysis Tools</h4>
+                        <p>SPSS, SAS, Stata, Excel, Tableau</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Laboratory</h4>
+                        <p>List relevant lab techniques and equipment</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Languages</h4>
+                        <p>English (Native), [Other languages and proficiency levels]</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Notable Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3 class="project-title">Project Title 1</h3>
+                        <p>Brief description of a significant academic or research project. Include the problem addressed, your approach, and outcomes or impact.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Project Title 2</h3>
+                        <p>Another important project that demonstrates your capabilities and interests relevant to graduate study.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Awards & Publications</h2>
+                <div class="experience-item">
+                    <h3 class="item-title">Academic Honors</h3>
+                    <p class="item-description">Dean's List (Fall 2023, Spring 2024), Undergraduate Research Award (2024), [Other relevant awards or scholarships]</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3 class="item-title">Publications & Presentations</h3>
+                    <p class="item-description">List any published papers, conference presentations, or poster sessions. Include full citations in academic format.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Your Name. This portfolio demonstrates my qualifications and enthusiasm for graduate study.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click-to-expand functionality for detailed descriptions
+            const items = document.querySelectorAll('.education-item, .experience-item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.backgroundColor = this.style.backgroundColor === 'rgb(230, 247, 255)' ? '#f8f9fa' : '#e6f7ff';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
